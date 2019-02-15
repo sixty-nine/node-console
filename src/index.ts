@@ -1,22 +1,10 @@
-
-export * from './lib/async';
-export * from './lib/hash';
-export * from './lib/number';
-
+import figlet from 'figlet';
 import { terminal as term } from 'terminal-kit';
-import node_fetch from 'node-fetch';
-
-global['fetch'] = node_fetch;
 
 term.fullscreen(true);
-
-const figlet = require('figlet');
-
-
-figlet('Welcome Dan!', function (err, data) {
+figlet('Welcome Dan!', (err, data) => {
   if (err) {
-    console.log('Something went wrong...');
-    console.dir(err);
+    term.bgRed('Something went wrong...').nextLine(2);
     return;
   }
 
@@ -47,18 +35,16 @@ figlet('Welcome Dan!', function (err, data) {
     .styleReset('\n')
     .wrap.bgBlue(' '.repeat(titleWidth))
     .styleReset('\n\n')
-    .down(2)
-  ;
+    .down(2);
 
   term
     .saveCursor()
     .moveTo(0, 2)
-    .drawImage(
-      '/home/dev/dan-console/_data/avatar.400x400.jpeg',
-      { shrink: { width: 20, height: 20 } })
+    .drawImage('/home/dev/dan-console/_data/avatar.400x400.jpeg', {
+      shrink: { width: 20, height: 20 }
+    })
     .then(() => {
       term.restoreCursor();
       // process.exit(0);
     });
-
 });

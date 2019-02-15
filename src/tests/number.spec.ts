@@ -1,6 +1,6 @@
 // tslint:disable:no-expression-statement
 import test from 'ava';
-import { double, power } from '..';
+import { double, power } from '../lib/number';
 
 test('double', t => {
   t.is(double(2), 4);
