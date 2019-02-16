@@ -5,9 +5,12 @@
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
-  "repository": "https://github.com/YOUR_GITHUB_USER_NAME/sixty-nine-console",
+  "repository": "https://github.com/sixty-nine/sixty-nine-console",
   "license": "MIT",
   "keywords": [],
+  "bin": {
+    "outside": "build/main/index.js"
+  },
   "scripts": {
     "describe": "npm-scripts-info",
     "build": "run-s clean && run-p build:*",
@@ -58,6 +61,7 @@
     "figlet": "^1.2.1",
     "get-pixels": "^3.3.2",
     "node-fetch": "latest",
+    "ora": "^3.1.0",
     "sha.js": "^2.4.11",
     "terminal-kit": "^1.26.11"
   },
