@@ -8,7 +8,7 @@
  * (https://github.com/DefinitelyTyped/DefinitelyTyped) type definition for the
  * dependency in question. However, if no one has yet contributed definitions
  * for the package, you may want to declare your own. (If you're using the
- * `noImplicitAny` compiler options, you'll be required to declare it.)
+ * `noImplicitAny` compiler _options, you'll be required to declare it.)
  *
  * This is an example type definition for the `sha.js` package, used in hash.ts.
  *

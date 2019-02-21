@@ -118,7 +118,7 @@
 
 "@babel/helper-function-name@7.0.0-rc.1":
   version "7.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@babel/helper-function-name/-/helper-function-name-7.0.0-rc.1.tgz#20b2cc836a53c669f297c8d309fc553385c5cdde"
+  resolved "https://registry.yarnpkg.com/@babel/helper-function-_name/-/helper-function-_name-7.0.0-rc.1.tgz#20b2cc836a53c669f297c8d309fc553385c5cdde"
   integrity sha512-fDbWxdYYbFNzcI5jn3qsPxHI1UCXwvFk0kGytGce/FEBYEPXBqycKknC8Oqiub8DzGtmTcvnqcm/cl/qxzeuiQ==
   dependencies:
     "@babel/helper-get-function-arity" "7.0.0-rc.1"
@@ -127,7 +127,7 @@
 
 "@babel/helper-function-name@^7.1.0":
   version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@babel/helper-function-name/-/helper-function-name-7.1.0.tgz#a0ceb01685f73355d4360c1247f582bfafc8ff53"
+  resolved "https://registry.yarnpkg.com/@babel/helper-function-_name/-/helper-function-_name-7.1.0.tgz#a0ceb01685f73355d4360c1247f582bfafc8ff53"
   integrity sha512-A95XEoCpb3TO+KZzJ4S/5uW5fNe26DjBGqf1o9ucyLyCmi1dXq/B3c8iaWTfBk3VvetUxl16e8tIrd5teOCfGw==
   dependencies:
     "@babel/helper-get-function-arity" "^7.0.0"
@@ -219,7 +219,7 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-wrap-function/-/helper-wrap-function-7.0.0-rc.1.tgz#168454fe350e9ead8d91cdc581597ea506e951ff"
   integrity sha512-LrqRD4+jEkQGVQsCRi7bPkSmYFAUd3pv9tYAC8nsr9Y0Qfus8oycqxDj60QW4dmigRKBRRbVVLr/0kMI2pk0MA==
   dependencies:
-    "@babel/helper-function-name" "7.0.0-rc.1"
+    "@babel/helper-function-_name" "7.0.0-rc.1"
     "@babel/template" "7.0.0-rc.1"
     "@babel/traverse" "7.0.0-rc.1"
     "@babel/types" "7.0.0-rc.1"
@@ -368,7 +368,7 @@
   dependencies:
     "@babel/code-frame" "7.0.0-rc.1"
     "@babel/generator" "7.0.0-rc.1"
-    "@babel/helper-function-name" "7.0.0-rc.1"
+    "@babel/helper-function-_name" "7.0.0-rc.1"
     "@babel/helper-split-export-declaration" "7.0.0-rc.1"
     "@babel/parser" "7.0.0-rc.1"
     "@babel/types" "7.0.0-rc.1"
@@ -383,7 +383,7 @@
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/generator" "^7.2.2"
-    "@babel/helper-function-name" "^7.1.0"
+    "@babel/helper-function-_name" "^7.1.0"
     "@babel/helper-split-export-declaration" "^7.0.0"
     "@babel/parser" "^7.2.3"
     "@babel/types" "^7.2.2"
@@ -1202,11 +1202,11 @@ color-convert@^1.9.0:
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
   integrity sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==
   dependencies:
-    color-name "1.1.3"
+    color-_name "1.1.3"
 
 color-name@1.1.3:
   version "1.1.3"
-  resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
+  resolved "https://registry.yarnpkg.com/color-_name/-/color-_name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
   integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
 
 combined-stream@^1.0.6, combined-stream@~1.0.6:
@@ -1272,7 +1272,7 @@ concordance@^3.0.0:
     date-time "^2.1.0"
     esutils "^2.0.2"
     fast-diff "^1.1.1"
-    function-name-support "^0.2.0"
+    function-_name-support "^0.2.0"
     js-string-escape "^1.0.1"
     lodash.clonedeep "^4.5.0"
     lodash.flattendeep "^4.4.0"
@@ -2191,7 +2191,7 @@ function-bind@^1.0.2, function-bind@^1.1.1:
 
 function-name-support@^0.2.0:
   version "0.2.0"
-  resolved "https://registry.yarnpkg.com/function-name-support/-/function-name-support-0.2.0.tgz#55d3bfaa6eafd505a50f9bc81fdf57564a0bb071"
+  resolved "https://registry.yarnpkg.com/function-_name-support/-/function-_name-support-0.2.0.tgz#55d3bfaa6eafd505a50f9bc81fdf57564a0bb071"
   integrity sha1-VdO/qm6v1QWlD5vIH99XVkoLsHE=
 
 gauge@~2.7.3:
@@ -2606,7 +2606,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.3:
+inherits@2, inherits@^2.0.3, inherits@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
@@ -3428,7 +3428,7 @@ meow@^4.0.0:
     decamelize-keys "^1.0.0"
     loud-rejection "^1.0.0"
     minimist "^1.1.3"
-    minimist-options "^3.0.1"
+    minimist-_options "^3.0.1"
     normalize-package-data "^2.3.4"
     read-pkg-up "^3.0.0"
     redent "^2.0.0"
@@ -3442,7 +3442,7 @@ meow@^5.0.0:
     camelcase-keys "^4.0.0"
     decamelize-keys "^1.0.0"
     loud-rejection "^1.0.0"
-    minimist-options "^3.0.1"
+    minimist-_options "^3.0.1"
     normalize-package-data "^2.3.4"
     read-pkg-up "^3.0.0"
     redent "^2.0.0"
@@ -3501,7 +3501,7 @@ minimatch@^3.0.0, minimatch@^3.0.4:
 
 minimist-options@^3.0.1:
   version "3.0.2"
-  resolved "https://registry.yarnpkg.com/minimist-options/-/minimist-options-3.0.2.tgz#fba4c8191339e13ecf4d61beb03f070103f3d954"
+  resolved "https://registry.yarnpkg.com/minimist-_options/-/minimist-_options-3.0.2.tgz#fba4c8191339e13ecf4d61beb03f070103f3d954"
   integrity sha512-FyBrT/d0d4+uiZRbqznPXqw3IpZZG3gl3wKWiX784FycUKVwBt0uLBFkQrtE4tZOrgo78nZp2jnKz3L65T5LdQ==
   dependencies:
     arrify "^1.0.1"
@@ -4686,14 +4686,6 @@ seventh@^0.7.18:
   integrity sha512-fwO9/Ogh28KdAUz71fgJBn3NezuFWaiVLa2HW2/6TlAGsUzTUVPIuxQEGMKqPNerTJ+ZZDrFlPH98sdvBZpa1A==
   dependencies:
     setimmediate "^1.0.5"
-
-sha.js@^2.4.11:
-  version "2.4.11"
-  resolved "https://registry.yarnpkg.com/sha.js/-/sha.js-2.4.11.tgz#37a5cf0b81ecbc6943de109ba2960d1b26584ae7"
-  integrity sha512-QMEp5B7cftE7APOjk5Y6xgrbWu+WkLVQwk8JNjZ8nKRciZaByEW6MubieAiToS7+dwvrjGhH8jRXz3MVd0AYqQ==
-  dependencies:
-    inherits "^2.0.1"
-    safe-buffer "^5.0.1"
 
 shebang-command@^1.2.0:
   version "1.2.0"
