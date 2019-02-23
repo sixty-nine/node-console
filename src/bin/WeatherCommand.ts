@@ -11,14 +11,16 @@ export default class WeatherCommand extends Command {
     super('weather', 'Show weather forecast');
     this.addArgument(new Argument('city', 'Show weather for this city', Argument.ARGUMENT_REQUIRED));
     this.addOption(new Option('format', 'Output format (1-4)'));
+    this.addOption(new Option('forecast', 'Forecast', Option.OPTION_BOOLEAN));
   }
 
   public execute = async (input: InputInterface, output: OutputInterface): Promise<void> => {
     const city = input.getFirstArgument();
     const format = input.getOption('format', '4');
+    const forecast = input.getOption('forecast', false);
 
     try {
-      const weather = await this.wttrIn(city, format);
+      const weather = await this.wttrIn(city, format, forecast);
       output
         .writeLn(weather)
         .writeLn()
@@ -29,10 +31,9 @@ export default class WeatherCommand extends Command {
     }
   }
 
-  private wttrIn = async (city: string, format = 4): Promise<string> => {
-    const data = await node_fetch(
-      `https://wttr.in/${city}?silent_lang=fr&format=${format}`
-    );
+  private wttrIn = async (city: string, format = 4, forecast = false): Promise<string> => {
+    const url = `https://wttr.in/${city}${!forecast ? `?format=${format}` : ''}`;
+    const data = await node_fetch(url, { headers: { 'User-Agent': 'curl' } });
 
     if (data.status >= 400) {
       const err = await data.text();
@@ -40,9 +41,9 @@ export default class WeatherCommand extends Command {
     }
 
     return (await data.text())
-      .replace('\n', '')
+      // .replace('\n', '')
       // Remove non-printable chars, https://stackoverflow.com/a/24231346/643106
-      .replace(/[^ -~]+/g, '')
+      // .replace(/[^ -~]+/g, '')
     ;
   };
 }

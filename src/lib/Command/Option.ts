@@ -64,7 +64,7 @@ export default class Option {
         }
       }
       else if (this.type === 'boolean') {
-        if (null !== value) {
+        if (value !== !!value) {
           throw new Error(`Option --${this.name} cannot have a value`);
         }
       }

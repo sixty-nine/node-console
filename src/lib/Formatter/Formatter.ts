@@ -37,7 +37,11 @@ export default class Formatter {
         const before = m[1];
         const style = m[3];
         const inside = m[4];
-        out += before + this.getStyle(style).apply(inside);
+        if (this.hasStyle(style)) {
+          out += before + this.getStyle(style).apply(inside);
+        } else {
+          out += before + inside;
+        }
       }
     } while (m);
 

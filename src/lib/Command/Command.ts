@@ -48,7 +48,7 @@ ${this._options.map(opt => opt.isRequired ? `--${opt.name}` : `[--${opt.name}]`)
 `);
 
     this._arguments.forEach(arg => output.writeLn(
-      `    <info>--${arg.name}</info>` +
+      `    <info>${arg.name}</info>` +
       `\t${arg.description} ` +
       `${arg.isRequired ? '<notice>REQUIRED</notice>' : ''}`
     ));
