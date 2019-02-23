@@ -2,6 +2,7 @@ import Command from './Command/Command';
 import CommandInterface from './Command/CommandInterface';
 import InputInterface from './Input/InputInterface';
 import OutputInterface from './Output/OutputInterface';
+import ChalkOutputStyle from './Formatter/ChalkOutputStyle';
 
 
 export default class App {
@@ -29,33 +30,58 @@ export default class App {
     return this;
   };
 
-  public showHelp = (output: OutputInterface) => {
-    output.write('-- ');
-    output.writeLn(this._name + (this._description ? ` - ${this._description}` : ''));
-    output.writeLn();
+  public addCommands = (commands: Command[]): App => {
+    commands.forEach(cmd => this.add(cmd));
+    return this;
+  };
 
-    this.commands.forEach((cmd: Command) => cmd.help(output, true));
-  }
+  public help = (output: OutputInterface) => {
+    output
+      .writeLn(`<notice>${this._name}</notice> - ${this._description}\n`)
+    ;
+
+    this.commands.forEach(
+      (cmd: Command) => output.writeLn(`    <info>${cmd.name}</info>\t${cmd.description}`)
+    );
+  };
 
   public run = async (input: InputInterface, output: OutputInterface): Promise<void> => {
     const action = input.getFirstArgument();
 
-    if (!action || action === 'help') {
-      return this.showHelp(output);
+    if (!action) {
+      return this.help(output);
     }
 
-    const cmd = this._commands[action];
+    let cmdName = action;
+
+    if (action === 'help') {
+      if (input.getArguments().length > 1) {
+        cmdName = input.getArgument(1);
+      } else {
+        return this.help(output);
+      }
+    }
+
+    const cmd = this._commands[cmdName];
 
     if (!cmd) {
-      throw new Error(`Command "${action}" does not exist`);
+      output.writeLn(`<error>Command "${cmdName}" does not exist</error>`);
+      return;
     }
 
-    if (input.getOption('help', false) || input.getOption('h', false )) {
-      console.log('HELP ' + cmd.name);
+    if (action === 'help' || input.getOption('help', false) || input.getOption('h', false )) {
+      return cmd.getHelp(output);
     }
 
     input.shiftArgument();
-    cmd.validate(input);
-    await cmd.execute(input, output);
+
+    try {
+      cmd.validate(input);
+      await cmd.execute(input, output);
+    } catch (err) {
+      output.writeLn();
+      err.message.split('\n').forEach(line => output.writeLn(`<error>${line}</error>`));
+    }
+
   };
 }

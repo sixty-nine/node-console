@@ -4,9 +4,7 @@ import InputInterface from '../Input/InputInterface';
 import Option from './Option';
 import OutputInterface from '../Output/OutputInterface';
 
-export default abstract class Command implements CommandInterface {
-
-  public execute: (input: InputInterface, output: OutputInterface) => Promise<void>;
+export default class Command implements CommandInterface {
 
   protected _name: string;
   protected _description: string;
@@ -26,33 +24,52 @@ export default abstract class Command implements CommandInterface {
     return this._description;
   }
 
-  public validate = (input: InputInterface) => {
-
-    const argsCount = this._arguments.length;
-
+  public validate = (input: InputInterface): boolean => {
     this.checkArgumentsCount(input);
     this.checkRequiredArguments(input);
-    this.checkRequiredOptions(input);
-    this.checkNumericOptions(input);
+    this._options.forEach(opt => opt.validateValue(input));
+    return true;
   };
 
-  public help = (output: OutputInterface, short = false) => {
-    output.write('\t' + this._name);
-    this._arguments.forEach(arg => output.write(` [${arg.name}]`));
-    // this._options.forEach(opt => output.write(opt.isRequired ? ` --${opt.name}` : ` [--${opt.name}]`));
-    output.writeLn('\t' + this.description);
+  public execute = async (_input: InputInterface, _output: OutputInterface) => {
+    // Do nothing
+  };
 
-    if (!short) {
-      output.writeLn();
-      this._options.forEach(opt => output.writeLn(
-        `\t--${opt.name}` +
-        `\t${opt.description} ` +
-        `${opt.isRequired ? '[REQUIRED]' : '[OPTIONAL]'}`
-      ));
+  public getHelp = (output: OutputInterface) => {
+    output
+      .writeLn(`
+<notice>Usage:</notice>
+
+    ${this.name} \
+${this._arguments.map(arg => arg.isRequired ? `${arg.name}` : `[${arg.name}]`).join(' ')} \
+${this._options.map(opt => opt.isRequired ? `--${opt.name}` : `[--${opt.name}]`).join(' ')}
+
+<notice>Arguments:</notice>
+`);
+
+    this._arguments.forEach(arg => output.writeLn(
+      `    <info>--${arg.name}</info>` +
+      `\t${arg.description} ` +
+      `${arg.isRequired ? '<notice>REQUIRED</notice>' : ''}`
+    ));
+
+    output.writeLn(`
+<notice>Options:</notice>
+`);
+    this._options.forEach(opt => output.writeLn(
+      `    <info>--${opt.name}</info>` +
+      `\t${opt.description} ` +
+      `${opt.isRequired ? '<notice>REQUIRED</notice>' : ''}`
+    ));
+
+    if (this._description !== '') {
+      output.writeLn().writeLn(this._description);
     }
+
+    output.writeLn();
   };
 
-  public addOption = (option: Option): CommandInterface => {
+  public addOption = (option: Option): Command => {
     if (this._options.find(opt => opt.name === option.name)) {
       throw new Error(`Option --${option.name} already exists`);
     }
@@ -60,9 +77,12 @@ export default abstract class Command implements CommandInterface {
     return this;
   };
 
-  public addArgument = (argument: Argument): CommandInterface => {
+  public addArgument = (argument: Argument): Command => {
     if (this._arguments.find(arg => arg.name === argument.name)) {
       throw new Error(`Argument ${argument.name} already exists`);
+    }
+    if (argument.isRequired && undefined !== this._arguments.find(a => !a.isRequired)) {
+      throw new Error('Required arguments cannot come after optional');
     }
     this._arguments.push(argument);
     return this;
@@ -82,21 +102,4 @@ export default abstract class Command implements CommandInterface {
     });
   };
 
-  private checkRequiredOptions = (input: InputInterface) => {
-    this._options.forEach(opt => {
-      if (opt.isRequired && !input.getOption(opt.name, false)) {
-        throw new Error(`Option --${opt.name} is required`);
-      }
-    });
-  };
-
-  private checkNumericOptions = (input: InputInterface) => {
-    this._options.forEach(opt => {
-      if (opt.type === 'numeric') {
-        if (isNaN(Number(input.getOption(opt.name, NaN)))) {
-          throw new Error(`Option --${opt.name} must be numeric`);
-        }
-      }
-    })
-  };
 }

@@ -1,29 +1,21 @@
-import Command from './Command';
-import InputInterface from '../Input/InputInterface';
-import OutputInterface from '../Output/OutputInterface';
+import Command from '../lib/Command/Command';
+import InputInterface from '../lib/Input/InputInterface';
+import OutputInterface from '../lib/Output/OutputInterface';
+import Argument from '../lib/Command/Argument';
+import Option from '../lib/Command/Option';
 import node_fetch from 'node-fetch';
-import Argument from './Argument';
-import Option from './Option';
 
 export default class WeatherCommand extends Command {
 
   constructor() {
     super('weather', 'Show weather forecast');
     this.addArgument(new Argument('city', 'Show weather for this city', Argument.ARGUMENT_REQUIRED));
-    this.addOption(new Option('format', 'Output format (1-4)', Option.OPTION_REQUIRED));
+    this.addOption(new Option('format', 'Output format (1-4)'));
   }
 
   public execute = async (input: InputInterface, output: OutputInterface): Promise<void> => {
     const city = input.getFirstArgument();
-    const format = input.getOption('format', '1');
-
-    if (!city) {
-      throw new Error('Argument "city" is required');
-    }
-
-    if (isNaN(Number(format))) {
-      throw new Error('Option --format must be numeric');
-    }
+    const format = input.getOption('format', '4');
 
     try {
       const weather = await this.wttrIn(city, format);
@@ -41,8 +33,13 @@ export default class WeatherCommand extends Command {
     const data = await node_fetch(
       `https://wttr.in/${city}?silent_lang=fr&format=${format}`
     );
-    return (await data
-      .text())
+
+    if (data.status >= 400) {
+      const err = await data.text();
+      throw new Error(data.statusText);
+    }
+
+    return (await data.text())
       .replace('\n', '')
       // Remove non-printable chars, https://stackoverflow.com/a/24231346/643106
       .replace(/[^ -~]+/g, '')

@@ -8,6 +8,7 @@ export default interface CommandInterface {
   description: string;
   addOption: (option: Option) => CommandInterface;
   addArgument: (argument: Argument) => CommandInterface;
-  validate: (input: InputInterface) => void;
+  validate: (input: InputInterface) => boolean;
   execute: (input: InputInterface, output: OutputInterface) => Promise<void>;
+  getHelp: (output: OutputInterface) => void;
 }

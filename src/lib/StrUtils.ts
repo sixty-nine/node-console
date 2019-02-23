@@ -1,10 +1,8 @@
-import { terminal as term } from 'terminal-kit';
-
 const StrUtils = {
-  rpad: (msg: string, fill = ' ', width = term.width) =>
+  rpad: (msg: string, fill = ' ', width = process.stdout.columns) =>
     msg.padEnd(width, fill),
 
-  center: (msg: string, fill = ' ', width = term.width) => {
+  center: (msg: string, fill = ' ', width = process.stdout.columns) => {
     const w = width + msg.length;
 
     const space = Math.floor(w / 2);

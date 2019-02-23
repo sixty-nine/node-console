@@ -1,3 +1,5 @@
+import InputInterface from '../Input/InputInterface';
+
 type OptionType = 'string' | 'boolean' | 'numeric';
 
 export default class Option {
@@ -10,13 +12,11 @@ export default class Option {
   private _description: string;
   private _type: OptionType;
   private _isRequired: boolean;
-  private _defaultValue: string | boolean;
 
   constructor(
     name: string,
     description: string = '',
-    options: number = Option.OPTION_OPTIONAL,
-    defaultValue: string | boolean = null
+    options: number = Option.OPTION_OPTIONAL
   ) {
     this._name = name;
     this._description = description;
@@ -30,7 +30,6 @@ export default class Option {
     ;
     this._isRequired = (options & Option.OPTION_REQUIRED) === Option.OPTION_REQUIRED;
     // tslint:enable
-    this._defaultValue = defaultValue;
   }
 
   public get name(): string {
@@ -49,7 +48,31 @@ export default class Option {
     return this._isRequired;
   }
 
-  public get defaultValue(): string | boolean {
-    return this._defaultValue;
+  public validateValue(input: InputInterface): void {
+    const value = input.getOption(this.name, null);
+
+    // If the option is required, it must be there
+    if (this.isRequired && !input.hasOption(this.name)) {
+      throw new Error(`Option --${this.name} is required`);
+    }
+
+    // If the option is present, it must have a valid value
+    if (input.hasOption(this.name)) {
+      if (this.type === 'numeric') {
+        if ('number' !== typeof value || isNaN(Number(value))) {
+          throw new Error(`Option --${this.name} must be numeric`);
+        }
+      }
+      else if (this.type === 'boolean') {
+        if (null !== value) {
+          throw new Error(`Option --${this.name} cannot have a value`);
+        }
+      }
+      else if (this.type === 'string') {
+        if ('boolean' === typeof value) {
+          throw new Error(`Option --${this.name} must have a value`);
+        }
+      }
+    }
   }
 }

@@ -1,9 +1,10 @@
 import OutputInterface from './OutputInterface';
+import OutputStyle from '../Formatter/OutputStyle';
 
 export default class StringOutput implements OutputInterface {
   private _buffer: string = '';
 
-  public get buffer(): string {
+  public get content(): string {
     return this._buffer;
   }
 
@@ -11,11 +12,11 @@ export default class StringOutput implements OutputInterface {
     const msgArr = Array.isArray(msg) ? msg : [msg];
     msgArr.forEach(m => this._buffer += m);
     return this;
-  }
+  };
 
   public writeLn = (msg: string | string[] = ''): OutputInterface => {
     const msgArr = Array.isArray(msg) ? msg : [msg];
     msgArr.forEach(m => this._buffer += m + '\n');
     return this;
-  }
+  };
 }
