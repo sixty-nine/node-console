@@ -40,7 +40,7 @@ export default class WeatherCommand extends Command {
       throw new Error(data.statusText);
     }
 
-    return (await data.text())
+    return (data.text())
       // .replace('\n', '')
       // Remove non-printable chars, https://stackoverflow.com/a/24231346/643106
       // .replace(/[^ -~]+/g, '')

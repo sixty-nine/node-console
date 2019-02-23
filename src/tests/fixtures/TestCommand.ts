@@ -16,6 +16,6 @@ export default class TestCommand extends Command {
   }
 
   public execute = async (_input: InputInterface, _output: OutputInterface) => {
-    //
+    _output.write('foobar');
   }
 }

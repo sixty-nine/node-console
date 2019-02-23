@@ -65,7 +65,7 @@ export default class App {
     const cmd = this._commands[cmdName];
 
     if (!cmd) {
-      output.writeLn(`<error>Command "${cmdName}" does not exist</error>`);
+      output.writeLn(`<error>Command ${cmdName} does not exist</error>`);
       return;
     }
 
@@ -79,7 +79,6 @@ export default class App {
       cmd.validate(input);
       await cmd.execute(input, output);
     } catch (err) {
-      output.writeLn();
       err.message.split('\n').forEach(line => output.writeLn(`<error>${line}</error>`));
     }
 
