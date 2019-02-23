@@ -112,13 +112,27 @@ test(
 );
 
 test('Should display getHelp', t => {
+  const expected = `
+<notice>Usage:</notice>
+
+    test arg1 --opt1 [--opt2] [--opt3]
+
+<notice>Arguments:</notice>
+
+    <info>arg1</info>	First arg <notice>REQUIRED</notice>
+
+<notice>Options:</notice>
+
+    <info>--opt1</info>	Option 1 <notice>REQUIRED</notice>
+    <info>--opt2</info>	Option 2 
+    <info>--opt3</info>	Option 3 
+
+This is a <info>test command</info>.
+
+`;
+
   const output = new StringOutput();
   new TestCommand().getHelp(output);
-  const res = output.content;
-
-  const f = new DefaultFormatter();
-  console.log(f.format(res));
-
-  t.is(true, true);
+  t.is(expected, output.content);
 
 });
