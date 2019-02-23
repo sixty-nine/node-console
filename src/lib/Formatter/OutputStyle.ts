@@ -1,7 +1,5 @@
 export default class OutputStyle {
 
-  public static defaultStyle: OutputStyle =  new OutputStyle();
-
   protected _foreColor: string;
   protected _backColor: string;
   protected _bold: boolean;

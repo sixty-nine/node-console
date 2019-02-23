@@ -11,7 +11,7 @@ export default class WeatherCommand extends Command {
     super('weather', 'Show weather forecast');
     this.addArgument(new Argument('city', 'Show weather for this city', Argument.ARGUMENT_REQUIRED));
     this.addOption(new Option('format', 'Output format (1-4)'));
-    this.addOption(new Option('forecast', 'Forecast', Option.OPTION_BOOLEAN));
+    this.addOption(new Option('forecast', 'Show 3 days forecast', Option.OPTION_BOOLEAN));
   }
 
   public execute = async (input: InputInterface, output: OutputInterface): Promise<void> => {
@@ -29,7 +29,7 @@ export default class WeatherCommand extends Command {
     } catch (err) {
       throw new Error('Something went wrong: ' + err.message);
     }
-  }
+  };
 
   private wttrIn = async (city: string, format = 4, forecast = false): Promise<string> => {
     const url = `https://wttr.in/${city}${!forecast ? `?format=${format}` : ''}`;
@@ -40,10 +40,6 @@ export default class WeatherCommand extends Command {
       throw new Error(data.statusText);
     }
 
-    return (data.text())
-      // .replace('\n', '')
-      // Remove non-printable chars, https://stackoverflow.com/a/24231346/643106
-      // .replace(/[^ -~]+/g, '')
-    ;
+    return (data.text());
   };
 }

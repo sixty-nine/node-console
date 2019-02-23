@@ -2,8 +2,6 @@ import Command from './Command/Command';
 import CommandInterface from './Command/CommandInterface';
 import InputInterface from './Input/InputInterface';
 import OutputInterface from './Output/OutputInterface';
-import ChalkOutputStyle from './Formatter/ChalkOutputStyle';
-
 
 export default class App {
   private _name: string;
