@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "outDir": "build/unique",
+    "rootDir": "src",
+    "outFile": "./build/unique/app.js",
+    "sourceRoot": "./src/",
+    "moduleResolution": "node",
+    "module": "amd"
+  },
+  "exclude": [
+    "node_modules/**"
+  ]
+}
