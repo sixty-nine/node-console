@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
-import CLIInput from '../lib/Input/CLIInput';
-import DefaultFormatter from '../lib/Formatter/DefaultFormatter';
-import StringOutput from '../lib/Output/StringOutput';
-import App from '../lib/App';
+import { App, CLIInput, DefaultFormatter, StringOutput } from '../lib';
 import WeatherCommand from './WeatherCommand';
 import HelloCommand from './HelloCommand';
 
