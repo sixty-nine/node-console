@@ -1,22 +1,22 @@
-import { default as App } from './App';
-import { default as StrUtils } from './StrUtils';
+import App from './App';
+import StrUtils from './StrUtils';
 
-import { default as Argument } from './Command/Argument';
-import { default as Command } from './Command/Command';
-import { default as CommandInterface } from './Command/CommandInterface';
-import { default as Option } from './Command/Option';
+import Argument from './Command/Argument';
+import Command from './Command/Command';
+import CommandInterface from './Command/CommandInterface';
+import Option from './Command/Option';
 
-import { default as ChalkOutputStyle } from './Formatter/ChalkOutputStyle';
-import { default as DefaultFormatter } from './Formatter/DefaultFormatter';
-import { default as Formatter } from './Formatter/Formatter';
-import { default as OutputStyle } from './Formatter/OutputStyle';
+import ChalkOutputStyle from './Formatter/ChalkOutputStyle';
+import DefaultFormatter from './Formatter/DefaultFormatter';
+import Formatter from './Formatter/Formatter';
+import OutputStyle from './Formatter/OutputStyle';
 
-import { default as CLIInput } from './Input/CLIInput';
-import { default as StringInput } from './Input/StringInput';
-import { default as InputInterface } from './Input/InputInterface';
+import CLIInput from './Input/CLIInput';
+import StringInput from './Input/StringInput';
+import InputInterface from './Input/InputInterface';
 
-import { default as OutputInterface } from './Output/OutputInterface';
-import { default as StringOutput } from './Output/StringOutput';
+import OutputInterface from './Output/OutputInterface';
+import StringOutput from './Output/StringOutput';
 
 export {
   App,
