@@ -1,5 +1,5 @@
 {
-  "name": "node-console",
+  "name": "sixty-nine-console",
   "version": "0.0.3",
   "description": "The console of Sixty-Nine",
   "main": "build/main/index.js",
